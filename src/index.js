@@ -49,8 +49,33 @@ const renderReview = (review) => {
   div.appendChild(innerDiv);
 
   document.querySelector(".reviews").appendChild(div);
-}
+};
 
 const renderAllReviews = () => {
   reviews.forEach(renderReview)
-}
+};
+
+const formHandler = () => {
+  const form = document.querySelector("form");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const username = document.querySelector("#username").value;
+    const image = document.querySelector("#image").value;
+    const star = document.querySelector("#star").value;
+    const userReview = document.querySelector("#review").value;
+
+    const newUserReview = {
+      username: username,
+      image: image,
+      star: star,
+      review: userReview
+    };
+
+    reviews.push(newUserReview);
+    renderReview(newUserReview);
+    form.reset();
+  });
+
+};
