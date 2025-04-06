@@ -50,3 +50,7 @@ const renderReview = (review) => {
 
   document.querySelector(".reviews").appendChild(div);
 }
+
+const renderAllReviews = () => {
+  reviews.forEach(renderReview)
+}
