@@ -23,6 +23,9 @@ const reviews = [
 /////////////////////////////////////////////////////////////////////
 
 //Your Code Below Here////
+import { calculateStarAverage } from "./logic.js";
+
+
 const renderReview = (review) => {
   const div = document.createElement("div");
   div.className = "review_container";
@@ -49,11 +52,11 @@ const renderReview = (review) => {
   div.appendChild(innerDiv);
 
   document.querySelector(".reviews").appendChild(div);
-};
+}
 
 const renderAllReviews = () => {
   reviews.forEach(renderReview)
-};
+}
 
 const formHandler = () => {
   const form = document.querySelector("form");
@@ -63,7 +66,7 @@ const formHandler = () => {
 
     const username = document.querySelector("#username").value;
     const image = document.querySelector("#image").value;
-    const star = document.querySelector("#star").value;
+    const star = parseInt(document.querySelector("#star").value);
     const userReview = document.querySelector("#review").value;
 
     const newUserReview = {
@@ -71,11 +74,21 @@ const formHandler = () => {
       image: image,
       star: star,
       review: userReview
-    };
+    }
 
     reviews.push(newUserReview);
     renderReview(newUserReview);
+    calculate(reviews);
     form.reset();
-  });
+  })
 
-};
+}
+
+const calculate = (reviews) => {
+  const average = calculateStarAverage(reviews);
+  document.querySelector(".starRating").textContent = `Star Rating: ${average}`;
+}
+
+renderAllReviews();
+calculate(reviews);
+formHandler();
