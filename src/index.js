@@ -23,3 +23,30 @@ const reviews = [
 /////////////////////////////////////////////////////////////////////
 
 //Your Code Below Here////
+const renderReview = (review) => {
+  const div = document.createElement("div");
+  div.className = "review_container";
+
+  const img = document.createElement("img");
+  img.src = review.image;
+
+  const innerDiv = document.createElement("div");
+
+  const username = document.createElement("p");
+  username.textContent = review.username;
+
+  const rating = document.createElement("p");
+  rating.textContent = review.star;
+
+  const userReviews = document.createElement("p");
+  userReviews.textContent = review.review;
+
+  innerDiv.appendChild(username);
+  innerDiv.appendChild(rating);
+  innerDiv.appendChild(userReviews);
+
+  div.appendChild(img);
+  div.appendChild(innerDiv);
+
+  document.querySelector(".reviews").appendChild(div);
+}
